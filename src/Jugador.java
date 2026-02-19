@@ -4,6 +4,9 @@ import javax.swing.JPanel;
 
 public class Jugador {
     private final int TOTAL_CARTAS = 10;
+    private final int MARGEN_IZQUIERDA=10;
+    private final int DISTANCIA_ENTRE_CARTAS=50;
+    private final int MARGEN_SUPERIOR=10;
     private Random r = new Random();
     private Carta [] cartas = new Carta[TOTAL_CARTAS];
     public void repartir () 
@@ -16,12 +19,28 @@ public class Jugador {
     }
     public void mostrar (JPanel pnl){
         pnl.removeAll();
-        for (int i = 0 ; i<TOTAL_CARTAS; i++)
+        pnl.setLayout(null);
+        int posicion=MARGEN_IZQUIERDA+DISTANCIA_ENTRE_CARTAS*(TOTAL_CARTAS-1);
+        for (Carta andrea : cartas)
     {
-        cartas[i].Mostrar(i*50, 10, pnl);
+        andrea.Mostrar(posicion, MARGEN_SUPERIOR, pnl);
+        posicion-=DISTANCIA_ENTRE_CARTAS;
     }
     pnl.repaint();
         
+    }
+    public String getGrupos () {
+        String resultado = "No se encontraron grupos";
+        int[] contadores = new int [NumeroCarta.values().length];
+        for (Carta carta : cartas)
+        {
+            contadores[carta.getnombre().ordinal()]++;
+
+        }
+
+        
+        
+        return resultado;
     }
 
 }
