@@ -37,9 +37,24 @@ public class Jugador {
             contadores[carta.getnombre().ordinal()]++;
 
         }
-
-        
-        
+        boolean haygrupos = false;
+        for (int i=0 ; i <contadores.length;i++){
+            if (contadores[i]>=2){
+                haygrupos = true;
+                break;
+            }
+            
+        }
+        if(haygrupos){
+        resultado = "Se encontraron los siguientes grupos:\n";
+        int i = 0;
+        for (int contador : contadores){
+            if(contador>=2){
+                resultado+=Grupo.values()[contador].toString()+" de "+NumeroCarta.values()[i].toString()+"\n";
+            }
+            i++;
+        }
+        }
         return resultado;
     }
 
